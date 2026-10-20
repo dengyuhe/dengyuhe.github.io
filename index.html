@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Maggie Deng – Quantitative research</title>
+<meta name="description" content="Maggie (Yuhe) Deng, Master of Finance candidate at MIT Sloan. Research in commodity markets, time-series forecasting, causal inference and agent-based modelling.">
+<meta property="og:title" content="Maggie Deng – Quantitative research">
+<meta property="og:description" content="Master of Finance candidate at MIT Sloan. Commodity research, volatility forecasting, causal inference and agent-based modelling.">
+<meta property="og:image" content="https://dengyuhe.github.io/assets/maggie-deng.jpg">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%232547d0'/><text x='16' y='22' font-family='Georgia,serif' font-size='17' fill='white' text-anchor='middle'>MD</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=Schibsted+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f6f7f9;
+    --surface: #ffffff;
+    --ink: #16202e;
+    --muted: #586375;
+    --rule: #dde2ea;
+    --accent: #2547d0;
+    --accent-ink: #1c38a8;
+    --sans: "Schibsted Grotesk", "Helvetica Neue", Arial, sans-serif;
+    --serif: "Newsreader", Georgia, "Times New Roman", serif;
+    color-scheme: light;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #10151e;
+      --surface: #171e2a;
+      --ink: #e6eaf0;
+      --muted: #9aa5b5;
+      --rule: #2a3342;
+      --accent: #8ea6ff;
+      --accent-ink: #b3c3ff;
+      color-scheme: dark;
+    }
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; scroll-padding-top: 4.5rem; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--serif);
+    font-size: 1.125rem;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  img { max-width: 100%; height: auto; display: block; }
+  a { color: var(--accent); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+  a:hover { color: var(--accent-ink); }
+  a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 2px; }
+
+  .wrap { max-width: 68rem; margin: 0 auto; padding: 0 1.5rem; }
+  .measure { max-width: 40rem; }
+
+  /* Top bar */
+  .bar {
+    position: sticky; top: 0; z-index: 10;
+    background: color-mix(in srgb, var(--bg) 90%, transparent);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--rule);
+  }
+  .bar .wrap { display: flex; align-items: center; justify-content: space-between; height: 3.5rem; }
+  .bar .name { font-family: var(--sans); font-weight: 700; color: var(--ink); text-decoration: none; letter-spacing: -0.01em; }
+  .bar nav { display: flex; gap: 1.6rem; font-family: var(--sans); font-size: 0.95rem; font-weight: 500; }
+  .bar nav a { color: var(--muted); text-decoration: none; }
+  .bar nav a:hover { color: var(--ink); }
+
+  /* Intro */
+  .intro { display: grid; grid-template-columns: 15rem 1fr; gap: 3.5rem; align-items: center; padding: 4.5rem 0 4rem; }
+  .intro img { width: 15rem; aspect-ratio: 4 / 5; object-fit: cover; border-radius: 4px; }
+  .intro h1 {
+    font-family: var(--sans); font-weight: 700; letter-spacing: -0.035em;
+    font-size: clamp(2.6rem, 6vw, 4.4rem); line-height: 0.98; margin: 0 0 1.4rem;
+  }
+  .intro h1 .given { display: block; font-weight: 500; font-size: 0.42em; letter-spacing: -0.01em; color: var(--muted); margin-top: 0.5rem; }
+  .intro p { margin: 0 0 1rem; max-width: 36rem; }
+  .intro .lead { font-size: 1.3rem; line-height: 1.5; }
+  .links { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-top: 1.6rem; font-family: var(--sans); font-size: 0.95rem; font-weight: 600; }
+  .links a {
+    text-decoration: none; padding: 0.5rem 1rem; border-radius: 999px;
+    border: 1px solid var(--rule); color: var(--ink); background: var(--surface);
+  }
+  .links a:hover { border-color: var(--accent); color: var(--accent); }
+  .links a.primary { background: var(--accent); border-color: var(--accent); color: var(--bg); }
+  .links a.primary:hover { background: var(--accent-ink); color: var(--bg); }
+
+  /* Sections */
+  section { padding: 3.5rem 0; border-top: 1px solid var(--rule); }
+  h2 { font-family: var(--sans); font-weight: 700; font-size: 1.9rem; letter-spacing: -0.02em; margin: 0 0 0.6rem; }
+  .section-note { color: var(--muted); margin: 0 0 2.5rem; max-width: 40rem; }
+
+  /* Projects: finding first, then the chart that shows it */
+  .project { padding: 2.75rem 0; border-bottom: 1px solid var(--rule); }
+  .project:last-child { border-bottom: 0; padding-bottom: 0; }
+  .project h3 { font-family: var(--sans); font-weight: 600; font-size: 1.05rem; margin: 0 0 0.25rem; letter-spacing: 0; }
+  .project .context { font-family: var(--sans); font-size: 0.9rem; color: var(--muted); margin: 0 0 1.1rem; }
+  .project .finding {
+    font-family: var(--serif); font-weight: 500; font-size: clamp(1.45rem, 3vw, 2rem);
+    line-height: 1.25; letter-spacing: -0.01em; margin: 0 0 1.2rem; max-width: 46rem;
+  }
+  .project .body { display: grid; grid-template-columns: minmax(0, 1fr); gap: 1.6rem; }
+  .project .body .text { max-width: 44rem; }
+  .project .body figure { max-width: 58rem; }
+  .project .body figure.narrow { max-width: 40rem; }
+  .project .body.square { grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr); gap: 2.5rem; align-items: start; }
+  .project .text p { margin: 0 0 0.9rem; }
+  .project ul { margin: 0 0 1rem; padding-left: 1.1rem; }
+  .project li { margin-bottom: 0.4rem; }
+  .project figure { margin: 0; }
+  .project figure a { display: block; }
+  .project figure img { width: 100%; border-radius: 4px; border: 1px solid var(--rule); background: #fff; }
+  .project figure.pixel img { image-rendering: pixelated; width: 300px; max-width: 100%; }
+  .project figcaption { font-family: var(--sans); font-size: 0.82rem; color: var(--muted); margin-top: 0.55rem; line-height: 1.45; }
+  .project .links { margin-top: 1.2rem; }
+  .tag {
+    display: inline-block; font-family: var(--sans); font-size: 0.78rem; font-weight: 600;
+    color: var(--accent); border: 1px solid currentColor; border-radius: 999px; padding: 0.05rem 0.55rem; margin-left: 0.4rem;
+    vertical-align: 0.15em;
+  }
+
+  /* Experience and education: a real timeline, so dates lead */
+  .timeline { display: grid; grid-template-columns: 9rem 1fr; gap: 0.3rem 2rem; margin: 0 0 1.5rem; }
+  .timeline dt { font-family: var(--sans); font-size: 0.9rem; color: var(--muted); padding-top: 0.25rem; }
+  .timeline dd { margin: 0 0 1.6rem; }
+  .timeline .role { font-family: var(--sans); font-weight: 600; font-size: 1.05rem; }
+  .timeline .where { color: var(--muted); font-family: var(--sans); font-size: 0.92rem; margin-bottom: 0.35rem; }
+  .timeline p { margin: 0; }
+  h3.sub { font-family: var(--sans); font-weight: 600; font-size: 1.2rem; margin: 2.5rem 0 1.25rem; }
+
+  .facts { display: grid; grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr)); gap: 1.5rem 3rem; }
+  .facts h3 { font-family: var(--sans); font-weight: 600; font-size: 1rem; margin: 0 0 0.35rem; }
+  .facts p { margin: 0; color: var(--ink); }
+
+  footer { border-top: 1px solid var(--rule); padding: 2.5rem 0 3.5rem; font-family: var(--sans); font-size: 0.92rem; color: var(--muted); }
+  footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 1rem; }
+
+  @media (max-width: 52rem) {
+    .intro { grid-template-columns: 1fr; gap: 2rem; padding-top: 3rem; align-items: start; }
+    .intro img { width: 11rem; }
+    .project .body, .project .body.square { grid-template-columns: 1fr; gap: 1.5rem; }
+    .timeline { grid-template-columns: 1fr; gap: 0; }
+    .timeline dt { padding-top: 0; }
+    .timeline dd { margin-bottom: 1.4rem; }
+  }
+  @media (max-width: 34rem) {
+    body { font-size: 1.05rem; }
+    .bar nav { gap: 1rem; font-size: 0.88rem; }
+    .bar nav .optional { display: none; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+  }
+</style>
+</head>
+<body>
+
+<header class="bar">
+  <div class="wrap">
+    <a class="name" href="#top">Maggie Deng</a>
+    <nav aria-label="Sections">
+      <a href="#research">Research</a>
+      <a href="#experience">Experience</a>
+      <a class="optional" href="#education">Education</a>
+      <a href="files/Maggie_Deng_CV.pdf">CV</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+  <div class="wrap">
+    <div class="intro">
+      <img src="assets/maggie-deng.jpg" alt="Portrait of Maggie Deng" width="640" height="800">
+      <div>
+        <h1>Maggie Deng<span class="given">Yuhe Deng</span></h1>
+        <p class="lead">I’m a Master of Finance candidate at MIT Sloan, concentrating in financial engineering. I build quantitative research from raw data to tested conclusions, and I hold every result to a fair benchmark before I believe it.</p>
+        <p>Before MIT, I studied applied mathematics and quantitative economics at Brandeis University, graduating summa cum laude with a 4.0 GPA.</p>
+        <div class="links">
+          <a class="primary" href="mailto:maggie.deng@sloan.mit.edu">Email me</a>
+          <a href="files/Maggie_Deng_CV.pdf">CV (PDF)</a>
+          <a href="https://www.linkedin.com/in/maggie-deng-52314a2b3">LinkedIn</a>
+          <a href="https://github.com/dengyuhe">GitHub</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================== Research -->
+  <section id="research">
+    <div class="wrap">
+      <h2>Research</h2>
+      <p class="section-note">Each project below links to its code, data notes and tests, so every number can be traced back to how it was made.</p>
+
+      <article class="project">
+        <h3>Industrial silicon futures: fundamentals, forecasting and producer risk</h3>
+        <p class="context">Commodity research internship, Lakefront Asset Management, 2025. Rebuilt and extended in 2026.</p>
+        <p class="finding">Past prices don’t predict the direction of the next move in industrial silicon futures, but they do predict its size.</p>
+        <div class="body">
+          <div class="text">
+            <ul>
+              <li>Built a bottom-up production-cost model across four regional benchmarks and five leading Chinese producers, a monthly supply–demand balance, and stress tests of producer margins under electricity, raw-material and price shocks.</li>
+              <li>Tested ARIMA forecasts against a random walk with Diebold–Mariano tests: no model beats “tomorrow equals today” significantly.</li>
+              <li>Found that a GARCH model with fat-tailed errors gives the only well-calibrated risk intervals, and used it to estimate one-month loss probabilities from 33% for the lowest-cost producer to 99% for Southwest plants in the dry season.</li>
+              <li>Traced a false 30% one-day jump in the vendor’s price series to a contract switch, and corrected it.</li>
+            </ul>
+          </div>
+          <figure>
+            <a href="assets/silicon-volatility.png" aria-label="Open full-size chart"><img src="assets/silicon-volatility.png" alt="Chart of daily volatility of industrial silicon futures from 2023 to 2025 with GARCH forecasts, and test-period return intervals" loading="lazy" width="1200" height="394"></a>
+            <figcaption>Volatility clusters and can be forecast. GARCH forecasts (left) and 95% risk intervals for daily returns in 2025 (right).</figcaption>
+          </figure>
+        </div>
+        <div class="links">
+          <a href="https://github.com/dengyuhe/industrial-silicon-commod-research">Code</a>
+          <a href="files/Industrial_Silicon_Report.pdf">Report (PDF)</a>
+        </div>
+      </article>
+
+      <article class="project">
+        <h3>Early termination of pandemic unemployment insurance</h3>
+        <p class="context">Senior thesis, Brandeis University, 2026. Advised by Jiwon Choi and Tymon Słoczyński.</p>
+        <p class="finding">Ending benefits early lowered unemployment by about half a point, but brought no robust gains in employment, payrolls or business activity.</p>
+        <div class="body">
+          <div class="text">
+            <p>In mid-2021, some U.S. states ended federal pandemic unemployment benefits months early. To separate the policy’s effect from regional differences in recovery, I compared neighboring counties on opposite sides of state borders.</p>
+            <ul>
+              <li>502 contiguous cross-border county pairs, with event-study models and pair-by-month fixed effects on BLS LAUS and QCEW data.</li>
+              <li>Robustness checks with 907 alternative pairs one county removed from the border, and with county-level clustering.</li>
+              <li>Pre-treatment trends suggest part of the unemployment decline predates the policy, so the true effect is likely smaller still.</li>
+            </ul>
+          </div>
+          <figure class="narrow">
+            <a href="assets/thesis-event-study.png" aria-label="Open full-size chart"><img src="assets/thesis-event-study.png" alt="Event-study chart of the unemployment rate around early benefit termination, with confidence intervals" loading="lazy" width="1000" height="543"></a>
+            <figcaption>Effect on the unemployment rate, months around June 2021, with 95% confidence intervals.</figcaption>
+          </figure>
+        </div>
+        <div class="links">
+          <a href="https://github.com/dengyuhe/pandemic-ui-early-termination">Code</a>
+          <a href="files/Deng_Senior_Thesis.pdf">Thesis (PDF)</a>
+          <a href="https://scholarworks.brandeis.edu/esploro/outputs/undergraduate/Early-Termination-of-Pandemic-Unemployment-Insurance/9924608628701921?institution=01BRAND_INST">Brandeis ScholarWorks</a>
+        </div>
+      </article>
+
+      <article class="project">
+        <h3>Schelling’s segregation model: a numerical map of tipping points</h3>
+        <p class="context">Team project, Brandeis, 2025. I led the project.</p>
+        <p class="finding">When two groups differ in how many similar neighbors they want, the model splits into four distinct regimes, and its tipping points fall exactly at whole-number neighbor ratios.</p>
+        <div class="body square">
+          <div class="text">
+            <p>Agents relocate when too few of their neighbors belong to their own group. Mapping convergence and segregation across every combination of the two groups’ tolerances revealed:</p>
+            <ul>
+              <li>A sharp tipping point at a tolerance of 0.75 (9 of 12 neighbors): every run converges at 0.75, none at 0.76.</li>
+              <li>Staged boundaries at 4/12 and 4/11, explained by agents at the grid’s edge having one neighbor fewer.</li>
+              <li>A bookkeeping bug in the original simulation, now fixed and covered by tests, with a switch that reproduces the original results exactly.</li>
+            </ul>
+          </div>
+          <figure class="pixel">
+            <picture>
+              <source srcset="assets/schelling-70-final.png" media="(prefers-reduced-motion: reduce)">
+              <img src="assets/schelling-70.gif" alt="Animation of a 50 by 50 grid of red and blue agents sorting themselves into large single-color regions" loading="lazy" width="300" height="300">
+            </picture>
+            <figcaption>Every agent wants at least 70% similar neighbors. A mixed grid sorts into near-total segregation.</figcaption>
+          </figure>
+        </div>
+        <div class="links">
+          <a href="https://github.com/dengyuhe/schelling-segregation-model">Code</a>
+        </div>
+      </article>
+
+      <article class="project">
+        <h3>Industry momentum after taxes <span class="tag">Exploratory</span></h3>
+        <p class="context">Independent project, 2025. A first pass that I plan to extend.</p>
+        <p class="finding">Industry momentum earns a sizable gross premium, but taxes take about a quarter of it, and smarter trading wins part of that back.</p>
+        <div class="body">
+          <div class="text">
+            <ul>
+              <li>12-2 momentum across the 49 Fama–French industries, 1970–2025: alpha of 0.83% a month against the three-factor model (t = 4.8).</li>
+              <li>A lot-level capital-gains engine that tracks each tax lot and carries losses forward. Tax-aware execution, cutting losers and letting winners run, lowers tax drag from 24.8% to 20.5%.</li>
+              <li>Next: out-of-sample tests, trading costs, and comparison with volatility-scaled momentum.</li>
+            </ul>
+          </div>
+          <figure>
+            <a href="assets/momentum-tax.png" aria-label="Open full-size chart"><img src="assets/momentum-tax.png" alt="Two charts of portfolio value before and after tax, 1970 to 2025, on a log scale" loading="lazy" width="1200" height="423"></a>
+            <figcaption>Growth of $1 before tax, after tax with monthly rebalancing, and after tax with tax-aware execution.</figcaption>
+          </figure>
+        </div>
+        <div class="links">
+          <a href="https://github.com/dengyuhe/industry-momentum-tryout">Code</a>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- ========================================================== Experience -->
+  <section id="experience">
+    <div class="wrap">
+      <h2>Experience</h2>
+      <dl class="timeline">
+        <dt>Summer 2025</dt>
+        <dd>
+          <div class="role">Commodity Research Intern</div>
+          <div class="where">Lakefront Asset Management, Beijing</div>
+          <p>Built the industrial silicon cost model, margin stress tests and price-forecasting pipeline above, and presented the research to the investment team.</p>
+        </dd>
+        <dt>Summer 2024</dt>
+        <dd>
+          <div class="role">Global Banking Intern</div>
+          <div class="where">Bank of Communications, Hong Kong</div>
+          <p>Screened over 10,000 cross-border transactions for compliance exceptions during account onboarding, and analyzed corporate credit risk for two lending reports.</p>
+        </dd>
+      </dl>
+    </div>
+  </section>
+
+  <!-- ========================================================== Education -->
+  <section id="education">
+    <div class="wrap">
+      <h2>Education</h2>
+      <dl class="timeline">
+        <dt>2026 – Feb 2028</dt>
+        <dd>
+          <div class="role">Master of Finance</div>
+          <div class="where">MIT Sloan School of Management</div>
+          <p>Concentration in financial engineering. Quantitative Finance Club and Data Analytics Club.</p>
+        </dd>
+        <dt>2022 – 2026</dt>
+        <dd>
+          <div class="role">B.S. Applied Mathematics and B.S. Quantitative Economics</div>
+          <div class="where">Brandeis University</div>
+          <p>Summa cum laude, GPA 4.0. Arnold Shapiro Prize in Mathematics; Phi Beta Kappa.</p>
+        </dd>
+      </dl>
+
+      <div class="facts">
+        <div>
+          <h3>Tools</h3>
+          <p>Python, R, Stata, MATLAB, LaTeX</p>
+        </div>
+        <div>
+          <h3>Methods</h3>
+          <p>Time-series and volatility models, causal inference, agent-based simulation, backtesting</p>
+        </div>
+        <div>
+          <h3>Outside work</h3>
+          <p>Skiing, yoga, Peking opera and calligraphy</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span><a href="mailto:maggie.deng@sloan.mit.edu">maggie.deng@sloan.mit.edu</a></span>
+    <span>© 2026 Maggie Deng</span>
+  </div>
+</footer>
+
+</body>
+</html>

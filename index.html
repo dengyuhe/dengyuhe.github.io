@@ -107,6 +107,15 @@
   .project .body .text { max-width: 44rem; }
   .project .body figure { max-width: 58rem; }
   .project .body figure.narrow { max-width: 40rem; }
+  .project > .text { max-width: 44rem; }
+  .project > .text p { margin: 0 0 0.9rem; }
+  .figs { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.4rem; max-width: 58rem; margin: 1.4rem 0 0; align-items: start; }
+  .figs.one { grid-template-columns: minmax(0, 1fr); }
+  .figs.narrow { max-width: 36rem; }
+  .figs.diagrams { max-width: 42rem; }
+  .stage { margin-top: 2.4rem; }
+  .stage h4 { font-family: var(--sans); font-weight: 600; font-size: 1.05rem; margin: 0 0 0.45rem; }
+  .stage > p { max-width: 44rem; margin: 0; }
   .project .body.square { grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr); gap: 2.5rem; align-items: start; }
   .project .text p { margin: 0 0 0.9rem; }
   .project ul { margin: 0 0 1rem; padding-left: 1.1rem; }
@@ -141,6 +150,7 @@
   footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 1rem; }
 
   @media (max-width: 52rem) {
+    .figs { grid-template-columns: 1fr; }
     .intro { grid-template-columns: 1fr; gap: 2rem; padding-top: 3rem; align-items: start; }
     .intro img { width: 11rem; }
     .project .body, .project .body.square { grid-template-columns: 1fr; gap: 1.5rem; }
@@ -179,7 +189,7 @@
       <div>
         <h1>Maggie Yuhe Deng</h1>
         <p class="lead">I’m a Master of Finance candidate at MIT Sloan, concentrating in financial engineering. I build quantitative research from raw data to tested conclusions, and I hold every result to a fair benchmark before I believe it.</p>
-        <p>Before MIT, I studied applied mathematics and quantitative economics at Brandeis University, graduating summa cum laude.</p>
+        <p>Before MIT, I studied applied mathematics and quantitative economics at Brandeis University, graduating summa cum laude with a 4.0 GPA.</p>
         <div class="links">
           <a class="primary" href="mailto:maggie.deng@sloan.mit.edu">Email me</a>
           <a href="files/Maggie_Deng_CV.pdf">CV (PDF)</a>
@@ -197,46 +207,32 @@
       <p class="section-note">Each project below links to its code, data notes and tests, so every number can be traced back to how it was made.</p>
 
       <article class="project">
-        <h3>Industrial silicon futures: fundamentals, forecasting and producer risk</h3>
-        <p class="context">Commodity research internship, Lakefront Asset Management, 2025. Rebuilt and extended in 2026.</p>
-        <p class="finding">Past prices don’t predict the direction of the next move in industrial silicon futures, but they do predict its size.</p>
-        <div class="body">
-          <div class="text">
-            <ul>
-              <li>Built a bottom-up production-cost model across four regional benchmarks and five leading Chinese producers, a monthly supply–demand balance, and stress tests of producer margins under electricity, raw-material and price shocks.</li>
-              <li>Tested ARIMA forecasts against a random walk with Diebold–Mariano tests: no model beats “tomorrow equals today” significantly.</li>
-              <li>Found that a GARCH model with fat-tailed errors gives the only well-calibrated risk intervals, and used it to estimate one-month loss probabilities from 33% for the lowest-cost producer to 99% for Southwest plants in the dry season.</li>
-              <li>Traced a false 30% one-day jump in the vendor’s price series to a contract switch, and corrected it.</li>
-            </ul>
-          </div>
-          <figure>
-            <a href="assets/silicon-volatility.png" aria-label="Open full-size chart"><img src="assets/silicon-volatility.png" alt="Chart of daily volatility of industrial silicon futures from 2023 to 2025 with GARCH forecasts, and test-period return intervals" loading="lazy" width="1200" height="394"></a>
-            <figcaption>Volatility clusters and can be forecast. GARCH forecasts (left) and 95% risk intervals for daily returns in 2025 (right).</figcaption>
-          </figure>
-        </div>
-        <div class="links">
-          <a href="https://github.com/dengyuhe/industrial-silicon-commod-research">Code</a>
-          <a href="files/Industrial_Silicon_Report.pdf">Report (PDF)</a>
-        </div>
-      </article>
-
-      <article class="project">
         <h3>Early termination of pandemic unemployment insurance</h3>
         <p class="context">Senior thesis, Brandeis University, 2026. Advised by Jiwon Choi and Tymon Słoczyński.</p>
-        <p class="finding">Ending benefits early lowered unemployment by about half a point, but brought no robust gains in employment, payrolls or business activity.</p>
-        <div class="body">
-          <div class="text">
-            <p>In mid-2021, some U.S. states ended federal pandemic unemployment benefits months early. To separate the policy’s effect from regional differences in recovery, I compared neighboring counties on opposite sides of state borders.</p>
-            <ul>
-              <li>502 contiguous cross-border county pairs, with event-study models and pair-by-month fixed effects on BLS LAUS and QCEW data.</li>
-              <li>Robustness checks with 907 alternative pairs one county removed from the border, and with county-level clustering.</li>
-              <li>Pre-treatment trends suggest part of the unemployment decline predates the policy, so the true effect is likely smaller still.</li>
-            </ul>
-          </div>
-          <figure class="narrow">
-            <a href="assets/thesis-event-study.png" aria-label="Open full-size chart"><img src="assets/thesis-event-study.png" alt="Event-study chart of the unemployment rate around early benefit termination, with confidence intervals" loading="lazy" width="1000" height="543"></a>
-            <figcaption>Effect on the unemployment rate, months around June 2021, with 95% confidence intervals.</figcaption>
-          </figure>
+        <p class="finding">Ending benefits early lowered unemployment by about half a point, but brought no robust gains in employment, wages or business activity.</p>
+        <div class="text">
+          <p>In mid-2021, some U.S. states ended federal pandemic unemployment benefits months early. To separate the policy’s effect from regional differences in recovery, I compared neighboring counties on opposite sides of state borders, which share local economic conditions but faced different policies.</p>
+          <ul>
+            <li>502 contiguous cross-border county pairs, with event-study models and pair-by-month fixed effects on BLS LAUS and QCEW data.</li>
+            <li>Robustness checks with 907 alternative pairs one county removed from the border, and with county-level clustering.</li>
+            <li>Pre-treatment trends suggest part of the unemployment decline predates the policy, so the true effect is likely smaller still.</li>
+          </ul>
+        </div>
+        <div class="figs">
+          <figure>
+  <a href="assets/thesis-map-contiguous.png" aria-label="Open full-size image"><img src="assets/thesis-map-contiguous.png" alt="Map of the United States highlighting contiguous border county pairs along state borders" loading="lazy" width="1200" height="721"></a>
+  <figcaption>Main sample: 502 contiguous border county pairs.</figcaption>
+</figure>
+          <figure>
+  <a href="assets/thesis-map-alternative.png" aria-label="Open full-size image"><img src="assets/thesis-map-alternative.png" alt="Map of the United States highlighting alternative comparison county pairs one county inland from state borders" loading="lazy" width="1200" height="721"></a>
+  <figcaption>Robustness sample: 907 pairs one county removed from the border.</figcaption>
+</figure>
+        </div>
+        <div class="figs one narrow">
+          <figure>
+  <a href="assets/thesis-event-study.png" aria-label="Open full-size image"><img src="assets/thesis-event-study.png" alt="Event-study chart of the effect on the unemployment rate, five months before to three months after early termination, with confidence intervals" loading="lazy" width="1100" height="800"></a>
+  <figcaption>Effect on the unemployment rate by month relative to early termination (June 2021), with 95% confidence intervals; standard errors clustered by state.</figcaption>
+</figure>
         </div>
         <div class="links">
           <a href="https://github.com/dengyuhe/pandemic-ui-early-termination">Code</a>
@@ -268,6 +264,67 @@
         </div>
         <div class="links">
           <a href="https://github.com/dengyuhe/schelling-segregation-model">Code</a>
+        </div>
+      </article>
+
+      <article class="project">
+        <h3>Industrial silicon: fundamentals, forecasting and producer risk</h3>
+        <p class="context">Commodity research internship, Lakefront Asset Management, 2025. Rebuilt and extended in 2026.</p>
+        <p class="finding">By June 2025, industrial silicon prices had fallen below the production cost of even the lowest-cost Chinese producer.</p>
+        <div class="text">
+          <p>Industrial silicon is the feedstock for solar polysilicon, silicone chemicals and aluminum alloys, and China holds over 80% of world capacity. I built the analysis from the bottom up: what drives demand, what production costs in each region, and what that means for producers’ margins and price risk.</p>
+        </div>
+
+        <div class="stage">
+          <h4>Supply and demand</h4>
+          <p>I traced each downstream use and converted its output into silicon demand (1.08 t per tonne of polysilicon, 0.52 t per tonne of silicone feedstock, 0.22 t per tonne of primary aluminum alloy) to build a monthly supply–demand balance. Supply exceeded estimated demand in 33 of 35 months while prices fell by more than half.</p>
+          <div class="figs one diagrams">
+            <figure>
+  <a href="assets/silicon-demand-chain.png" aria-label="Open full-size image"><img src="assets/silicon-demand-chain.png" alt="Diagram of the three downstream uses of industrial silicon: organosilicon, polysilicon and aluminum-silicon alloys" loading="lazy" width="1028" height="390"></a>
+  <figcaption>The three downstream uses of industrial silicon.</figcaption>
+</figure>
+            <figure>
+  <a href="assets/silicon-polysilicon-chain.png" aria-label="Open full-size image"><img src="assets/silicon-polysilicon-chain.png" alt="Diagram of the polysilicon value chain from industrial silicon to wafers, solar cells, modules and semiconductor chips" loading="lazy" width="1110" height="282"></a>
+  <figcaption>The polysilicon value chain, the fastest-growing source of demand.</figcaption>
+</figure>
+          </div>
+          <div class="figs one">
+            <figure>
+  <a href="assets/silicon-balance.png" aria-label="Open full-size image"><img src="assets/silicon-balance.png" alt="Bar chart of the monthly surplus of supply over demand from 2022 to 2025, with the spot price falling" loading="lazy" width="1400" height="532"></a>
+  <figcaption>Monthly surplus of supply over estimated demand (bars) and the 553# spot price in Kunming (line).</figcaption>
+</figure>
+          </div>
+        </div>
+
+        <div class="stage">
+          <h4>Costs and margins</h4>
+          <p>A bottom-up cost model (unit consumption × unit price for each input) across four regional and seasonal benchmarks shows electricity driving 37–50% of cost. Stress tests show that at mid-2025 prices any single adverse shock (a 10% price fall, 0.05 CNY/kWh more for power, or 20% dearer raw materials) pushes even the lowest-cost producer into a loss.</p>
+          <div class="figs one">
+            <figure>
+  <a href="assets/silicon-costs.png" aria-label="Open full-size image"><img src="assets/silicon-costs.png" alt="Stacked bar chart of production cost per tonne for four producer types, from 8,300 to 12,620 CNY per tonne" loading="lazy" width="1400" height="513"></a>
+  <figcaption>Full production cost per tonne by region, split into electricity, raw materials, labor and other costs.</figcaption>
+</figure>
+            <figure>
+  <a href="assets/silicon-spot-vs-cost.png" aria-label="Open full-size image"><img src="assets/silicon-spot-vs-cost.png" alt="Line chart of spot prices falling through regional cost levels, and a cost curve of the five largest producers" loading="lazy" width="1600" height="533"></a>
+  <figcaption>Left: spot prices against each producer type’s cost. Right: cost curve of the five largest producers, with the 2025 low in Xinjiang spot.</figcaption>
+</figure>
+          </div>
+        </div>
+
+        <div class="stage">
+          <h4>Price and volatility</h4>
+          <p>On 2.6 years of daily futures data, ARIMA forecasts matched but did not beat a random walk (both 1.2% average daily error). Volatility, however, was predictable: a GARCH model cut breaches of its 95% risk range by 23% versus constant volatility, and its simulated price paths put producers’ one-month probability of a loss between 33% and 99%. Along the way, I traced a false 30% one-day jump in the vendor’s data to a switch between futures contracts, and corrected it.</p>
+          <div class="figs one">
+            <figure>
+  <a href="assets/silicon-volatility.png" aria-label="Open full-size image"><img src="assets/silicon-volatility.png" alt="Chart of daily volatility of industrial silicon futures with GARCH forecasts, and 95% risk ranges for daily returns in 2025" loading="lazy" width="1600" height="525"></a>
+  <figcaption>GARCH volatility forecasts (left) and 95% risk ranges for daily returns in the 2025 test period (right).</figcaption>
+</figure>
+          </div>
+        </div>
+
+        <div class="links">
+          <a href="https://github.com/dengyuhe/industrial-silicon-commod-research">Code</a>
+          <a href="files/Industrial_Silicon_Report.pdf">Report (PDF)</a>
         </div>
       </article>
 
